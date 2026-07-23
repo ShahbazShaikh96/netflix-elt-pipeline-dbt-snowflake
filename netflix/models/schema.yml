@@ -71,3 +71,78 @@ models:
         description: "Timestamp indicating when the rating was submitted."
         tests:
           - not_null
+
+  - name: top_movie_analysis
+    description: "Reporting view ranking movies with more than 100 ratings by average rating."
+
+    columns:
+      - name: movie_title
+        description: "Movie title from the movie dimension."
+        tests:
+          - not_null
+
+      - name: average_rating
+        description: "Average rating for the movie."
+
+      - name: total_ratings
+        description: "Total number of ratings received by the movie."
+
+  - name: genre_rating_analysis
+    description: "Reporting view showing average rating and movie count by genre."
+
+    columns:
+      - name: genre
+        description: "Movie genre."
+        tests:
+          - not_null
+
+      - name: average_rating
+        description: "Average rating across movies in the genre."
+
+      - name: total_movies
+        description: "Number of distinct movies in the genre."
+
+  - name: rating_distribution_analysis
+    description: "Reporting view showing count and percentage of ratings by rating value."
+
+    columns:
+      - name: rating
+        description: "Rating value."
+        tests:
+          - not_null
+
+      - name: number_of_ratings
+        description: "Number of ratings with this rating value."
+
+      - name: percentage_of_ratings
+        description: "Percentage of all ratings with this rating value."
+
+  - name: user_engagement_analysis
+    description: "Reporting view ranking users by number of ratings submitted."
+
+    columns:
+      - name: user_id
+        description: "Identifier of the user who submitted ratings."
+        tests:
+          - not_null
+
+      - name: number_of_ratings
+        description: "Total ratings submitted by the user."
+
+      - name: average_rating_given
+        description: "Average rating submitted by the user."
+
+  - name: top_relevance_analysis
+    description: "Reporting view ranking genome tags by average relevance score."
+
+    columns:
+      - name: tag_name
+        description: "Genome tag name."
+        tests:
+          - not_null
+
+      - name: average_relevance
+        description: "Average relevance score for the tag."
+
+      - name: movies_tagged
+        description: "Number of distinct movies with the tag."
