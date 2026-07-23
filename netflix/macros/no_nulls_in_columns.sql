@@ -1,7 +1,7 @@
 {% macro no_nulls_in_columns(model) %}
     SELECT * FROM {{ model }} WHERE 
-    {% for col in adapter.dbt_utils.get_filtered_columns_in_relation(model) %}
-        {{ col.column }} IS NULL OR
+    {% for col in dbt_utils.get_filtered_columns_in_relation(model) %}
+        {{ col }} IS NULL OR
     {% endfor %}
     FALSE
 {% endmacro %}
