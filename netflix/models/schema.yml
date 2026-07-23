@@ -1,0 +1,73 @@
+version: 2
+
+models:
+
+  - name: dim_movies
+    description: "A dimension table containing standardized movie information."
+
+    columns:
+      - name: movie_id
+        description: "Unique identifier for each movie."
+        tests:
+          - not_null
+          - unique
+
+      - name: movie_title
+        description: "Standardized movie title."
+        tests:
+          - not_null
+
+      - name: genre_array
+        description: "Movie genres stored as an array."
+
+      - name: genres
+        description: "Original genre string from the source dataset."
+
+  - name: dim_users
+    description: "A dimension table containing unique users extracted from ratings and tags."
+
+    columns:
+      - name: user_id
+        description: "Unique identifier for each user."
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_genome_tags
+    description: "A dimension table containing unique genome tags."
+
+    columns:
+      - name: tag_id
+        description: "Unique identifier for each genome tag."
+        tests:
+          - not_null
+          - unique
+
+      - name: tag_name
+        description: "Cleaned, human-readable genome tag."
+        tests:
+          - not_null
+
+  - name: fct_ratings
+    description: "Fact table containing user ratings for movies."
+
+    columns:
+      - name: user_id
+        description: "Identifier of the user who rated the movie."
+        tests:
+          - not_null
+
+      - name: movie_id
+        description: "Identifier of the movie being rated."
+        tests:
+          - not_null
+
+      - name: rating
+        description: "Rating given by the user on a scale from 0.5 to 5.0."
+        tests:
+          - not_null
+
+      - name: rating_timestamp
+        description: "Timestamp indicating when the rating was submitted."
+        tests:
+          - not_null
